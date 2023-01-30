@@ -60,13 +60,13 @@ VALUES
     ('Muffin', 2.99);
 
 INSERT INTO
-    sessions_users (session_id, user_id)
+    sessions_users (session_id, user_id, finished)
 VALUES
-    (1, 1),
-    (1, 2),
-    (1, 3),
-    (2, 3),
-    (2, 2);
+    (1, 1, TRUE),
+    (1, 2, TRUE),
+    (1, 3, TRUE),
+    (2, 3, FALSE),
+    (2, 2, FALSE);
 
 INSERT INTO
     sessions_items (session_id, item_id)

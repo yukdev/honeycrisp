@@ -1,6 +1,33 @@
 {
-  "title": "McDonald's",
-  "description": "A little snack",
-  "host": "1",
-  "attendees": [1, 2]
+	"session": {
+		"id": 1,
+		"title": "McDonald's",
+		"description": "A little snack",
+		"closed": true,
+		"host": "George Weng",
+		"attendees": [
+			{
+				"name": "Charles Pan",
+				"phone": "646-182-2811",
+                "paid": true
+			},
+			{
+				"name": "Zhen Teoh",
+				"phone": "917-287-6761"
+			}
+		],
+		"items": [
+			{
+				"name": "McDouble",
+				"price": "1.99",
+                "eaters": [2]
+			},
+			{
+				"name": "Large Fries",
+				"price": "3.99",
+                "eaters": [2, 3]
+			}
+		]
+	}
 }
+

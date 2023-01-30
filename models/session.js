@@ -27,7 +27,7 @@ class Session {
 
   static async findAll() {
     const result = await db.query(
-      `SELECT id, title, description
+      `SELECT id, title, description, closed
         FROM sessions
         ORDER BY title`
     );
@@ -40,9 +40,10 @@ class Session {
   /** Get a session by id and return it with attendees and items */
   static async get(id) {
     const sessionRes = await db.query(
-      `SELECT id, title, description
-        FROM sessions
-        WHERE id = $1`,
+      `SELECT s.id, s.title, s.description, s.closed, CONCAT(u.first_name, ' ', u.last_name) AS host
+        FROM sessions AS s
+        JOIN users AS u ON s.host = u.id
+        WHERE s.id = $1`,
       [id]
     );
 

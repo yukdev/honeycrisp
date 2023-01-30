@@ -14,23 +14,26 @@ CREATE TABLE sessions (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT,
-    host INTEGER NOT NULL REFERENCES users(id)
+    host INTEGER NOT NULL REFERENCES users(id),
+    closed boolean NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE items (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    price NUMERIC NOT NULL
+    price NUMERIC NOT NULL photo TEXT,
 );
 
 CREATE TABLE sessions_users (
-    session_id INTEGER NOT NULL REFERENCES sessions(id),
-    user_id INTEGER NOT NULL REFERENCES users(id),
-    PRIMARY KEY (session_id, user_id)
+    session_id INTEGER NOT NULL REFERENCES sessions(id) ON DELETE CASCADE,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    PRIMARY KEY (session_id, user_id) finished BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE sessions_items (
-    session_id INTEGER NOT NULL REFERENCES sessions(id),
-    item_id INTEGER NOT NULL REFERENCES items(id),
-    PRIMARY KEY (session_id, item_id)
+    session_id INTEGER NOT NULL REFERENCES sessions(id) ON DELETE CASCADE,
+    item_id INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+    PRIMARY KEY (session_id, item_id) user INTEGER REFERENCES users(id) DEFAULT NULL ON DELETE
+    SET
+        NULL
 );
